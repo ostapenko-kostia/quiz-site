@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/main.css" />
+		<title>Quiz</title>
+	</head>
+	<body>
+		<main>
+			<section class="quiz" id="quiz">
+				<h1 class="quiz__title" id="quiz-title">
+					Introducing our 2025 launch offer.
+				</h1>
+				<p class="quiz__description">
+					As part of a limited-time promotion, [Product Name] is inviting select
+					users to receive a curated sample kit — completely free.
+					<br /><br />Just complete a brief survey to check your eligibility.<br /><br />
+					⚠️ Act quickly — availability is strictly limited.
+				</p>
+				<button class="quiz__button" id="start-button">Continue</button>
+				<div id="question-variants" class="hidden quiz__variants"></div>
+				<div id="quiz-completed" class="hidden quiz-completed">
+					<h2 class='quiz__completed-text'>Please wait while we review your responses.</h2>
+					<p id='quiz-completed-counting'>Please wait while we review your responses.</p>
+				</div>
+			</section>
+		</main>
+
+		<script src="js/quiz.js" />
+	</body>
+</html>
