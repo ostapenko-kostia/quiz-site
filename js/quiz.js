@@ -27,9 +27,10 @@ let isCompleted = false
 
 const quiz = document.querySelector('#quiz')
 const title = document.querySelector('#quiz-title')
+const boxes = document.querySelector('#quiz-boxes')
 const startButton = document.querySelector('#start-button')
-const questionVariants = document.querySelector('#question-variants')
 const quizCompleted = document.querySelector('#quiz-completed')
+const questionVariants = document.querySelector('#question-variants')
 const quizCompletedCounting = document.querySelector('#quiz-completed-counting')
 
 const completionMessages = [
@@ -66,10 +67,15 @@ const rotateCompletionMessage = () => {
 
 			if (index === messages.length) {
 				// When all messages are updated, replace the last one with Congratulations
-				setTimeout(() => {
-					messages[messages.length - 1].textContent =
-						completionMessages[completionMessages.length - 1]
-				}, 1000)
+				messages[messages.length - 1].textContent =
+					completionMessages[completionMessages.length - 1]
+				quizCompletedCounting.innerHTML = ''
+				quizCompleted.classList.add('hidden')
+
+				quiz.classList.add('hidden')
+				const boxGame = document.querySelector('#box-game')
+				boxGame.classList.add('active')
+				startBoxGame()
 			} else {
 				setTimeout(updateNextMessage, 1000)
 			}

@@ -21,12 +21,41 @@
 				<button class="quiz__button" id="start-button">Continue</button>
 				<div id="question-variants" class="hidden quiz__variants"></div>
 				<div id="quiz-completed" class="hidden quiz-completed">
-					<h2 class='quiz__completed-text'>Please wait while we review your responses.</h2>
-					<p id='quiz-completed-counting'>Please wait while we review your responses.</p>
+					<h2 class="quiz__completed-text">
+						Please wait while we review your responses.
+					</h2>
+					<p id="quiz-completed-counting">
+						Please wait while we review your responses.
+					</p>
+				</div>
+			</section>
+
+			<section class="box-game" id="box-game">
+				<h2 class="box-game__title" id="box-game-title">
+					Choose a box to find your prize!
+				</h2>
+				<div id="box-container" class="hidden">
+					<!-- Boxes will be rendered here -->
+				</div>
+				<div id="box-game-completed" class="hidden">
+					<h2>🎉 Congratulations!</h2>
+					<p>
+						You've found your prize! We'll contact you shortly with details.
+					</p>
 				</div>
 			</section>
 		</main>
 
-		<script src="js/quiz.js" />
+		<!-- Popup for box game -->
+
+		<div id="box-popup" class="box-popup hidden">
+			<div class="box-popup__content">
+				<div id="box-popup-message"></div>
+				<button id="box-popup-btn" class="box-popup__btn">Okay</button>
+			</div>
+		</div>
+
+		<script src="js/quiz.js"></script>
+		<script src="js/box-game.js"></script>
 	</body>
 </html>
