@@ -285,6 +285,12 @@ button {
 	text-decoration: none;
 }
 
+@media (max-width: 330px) {
+	.box-popup__btn {
+		padding: 0.5rem 2rem;
+	}
+}
+
 .box-popup__btn:hover {
 	filter: brightness(0.9);
 }
