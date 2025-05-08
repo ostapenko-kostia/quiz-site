@@ -18,7 +18,8 @@
 body,
 html {
 	font-family: 'Inter', sans-serif;
-	background: #f4f2ee;
+	background: url('/images/bg.jpg') no-repeat center center fixed;
+	background-size: cover;
 	margin: 0;
 	padding: 0;
 	width: 100vw;
