@@ -95,9 +95,9 @@ function handleBoxClick(e) {
 
 		const showPrizePopup = () => {
 			showBoxPopup(
-				`<div style='font-size:2rem;'>🎉 Congratulations! You're a winner!</div>
+				`<div style='font-size:1.1rem;'>🎉 Congratulations! You're a winner!</div>
 				<div style='margin:1rem 0;'>You've just unlocked your [Product Name]!<br>What's next?</div>
-				<ol style='text-align:left; margin:0 auto; max-width:350px;'>
+				<ol style='text-align:left; margin:0 auto; max-width:350px; font-size:0.9rem;'>
 					<li>Click the "Okay" button below.</li>
 					<li>You'll be redirected to our partner's page.</li>
 					<li>Complete the quick registration and wait for your result.</li>
