@@ -24,10 +24,17 @@ function getTriesLeft() {
 function showBoxPopup(message, btnText = 'Okay', cb = null) {
 	boxPopupMessage.innerHTML = message
 	boxPopup.classList.remove('hidden')
-	boxPopupBtn.textContent = btnText
-	boxPopupBtn.onclick = () => {
-		boxPopup.classList.add('hidden')
-		if (cb) cb()
+
+	// For prize popup (redirection)
+	if (message.includes("Congratulations! You're a winner!")) {
+		boxPopupBtn.outerHTML = `<a href="https://your-partner-page.com" class="box-popup__btn">${btnText}</a>`
+	} else {
+		// For other popups
+		boxPopupBtn.textContent = btnText
+		boxPopupBtn.onclick = () => {
+			boxPopup.classList.add('hidden')
+			if (cb) cb()
+		}
 	}
 }
 
@@ -41,11 +48,11 @@ function renderBoxes() {
 			<button class="box-outer" data-box-id="${box.id}" data-idx="${idx}" ${
 				boxClicked[box.id] ? 'disabled' : ''
 			}>
-				<div class="box ${
-					boxClicked[box.id] ? 'box--opened box--empty' : ''
-				}" id="box-${box.id}">
-					<div class="box__lid"></div>
-					<div class="box__body"></div>
+				<div class="box ${boxClicked[box.id] ? 'box--opened' : ''}" id="box-${box.id}">
+					<img src="images/box${
+						boxClicked[box.id] ? '-opened' : ''
+					}.png" alt="Box" class="box__img">
+					<img src="images/prize.png" alt="Prize" class="box__prize">
 				</div>
 			</button>
 		`
@@ -76,11 +83,15 @@ function handleBoxClick(e) {
 	const boxEl = document.getElementById(`box-${boxId}`)
 	boxEl.classList.add('box--opened')
 
+	// Update image to opened box
+	const boxImg = boxEl.querySelector('.box__img')
+	boxImg.src = 'images/box-opened.png'
+
 	let isPrize = attempts === maxAttempts
 	if (isPrize) {
 		boxEl.classList.add('box--prize')
-		boxEl.querySelector('.box__body').innerHTML =
-			'<img src="img/prize.png" alt="Prize" class="box__prize-img">'
+		const prizeImg = boxEl.querySelector('.box__prize')
+		prizeImg.classList.add('box__prize--active')
 
 		const showPrizePopup = () => {
 			showBoxPopup(
@@ -92,10 +103,7 @@ function handleBoxClick(e) {
 					<li>Complete the quick registration and wait for your result.</li>
 					<li>Shipping is completely free!</li>
 				</ol>`,
-				'Okay',
-				() => {
-					window.location.href = 'https://your-partner-page.com'
-				}
+				'Okay'
 			)
 		}
 
@@ -105,8 +113,6 @@ function handleBoxClick(e) {
 			showPrizePopup()
 		}
 	} else {
-		boxEl.classList.add('box--empty')
-		boxEl.querySelector('.box__body').textContent = ''
 		setTimeout(() => {
 			showBoxPopup(
 				`<div style='font-size:2rem;'>🎁 Oops! Not this time…</div>

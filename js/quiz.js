@@ -19,11 +19,13 @@ const QUESTIONS = [
 	},
 ]
 
-const answers = []
+const answers = JSON.parse(window.sessionStorage.getItem('answers')) || []
 
-let currentQuestion = 0
-let isStarted = false
-let isCompleted = false
+let currentQuestion = answers.length
+let isStarted = answers.length > 0
+let isCompleted = answers.length === QUESTIONS.length
+
+console.log(answers)
 
 const quiz = document.querySelector('#quiz')
 const title = document.querySelector('#quiz-title')
@@ -100,7 +102,7 @@ const handleVariantClick = e => {
 	const variant = e.target.dataset.variant
 	const question = e.target.dataset.question
 	answers.push({ question, variant })
-	console.log(answers)
+	window.sessionStorage.setItem('answers', JSON.stringify(answers))
 	currentQuestion++
 	renderQuestion()
 }
@@ -122,4 +124,11 @@ const renderQuestion = () => {
 				`<button class="quiz__variant" data-question="${question.text}" data-variant="${variant}" onclick="handleVariantClick(event)">${variant}</button>`
 		)
 		.join('')
+}
+
+// Initialize the quiz state based on saved answers
+if (isStarted) {
+	quiz.classList.add('quiz-started')
+	questionVariants.classList.remove('hidden')
+	renderQuestion()
 }
